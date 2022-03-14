@@ -29,3 +29,8 @@ Route.group(() => {
   Route.post('oauth/logout', 'Auth/OAuthsController.logout')
   // Route.post('password-change', 'PasswordChangeController').middleware(['auth'])
 })
+
+Route.group(() => {
+  Route.resource("users", "UsersController").apiOnly();
+})
+  .namespace("App/Controllers/Http/People")
