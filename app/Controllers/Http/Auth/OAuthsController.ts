@@ -1,12 +1,14 @@
+import { validator } from './../../../../config/app';
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 class OAuthsController {
-    async login({ request, response }) {
+    async login({ request, response, validator }) {
+        const { username, password } = await validator.validate({
+            username: validator.schema.string(),
+            password: validator.schema.string(),
+        })
+        console.log(username, password);
 
-
-        console.log("request+++++++++++++")
-        console.log("request+++++++++++++")
-        console.log(request)
         response.json({
             status: true,
         })
