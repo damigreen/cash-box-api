@@ -25,10 +25,11 @@ Route.get('/', async () => {
 })
 
 Route.group(() => {
-  Route.post('oauth/login', 'Auth/OAuthsController.login')
-  Route.post('oauth/logout', 'Auth/OAuthsController.logout')
+  Route.post('oauth/login', 'OAuthsController.login')
+  Route.post('oauth/logout', 'OAuthsController.logout')
   // Route.post('password-change', 'PasswordChangeController').middleware(['auth'])
 })
+  .namespace("App/Controllers/Http/Auth")
 
 Route.group(() => {
   Route.resource("users", "UsersController").apiOnly();
