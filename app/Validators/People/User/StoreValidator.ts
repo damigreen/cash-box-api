@@ -25,8 +25,8 @@ export default class StoreValidator {
    */
   public schema = schema.create({
     name: schema.string(),
-    email: schema.string({}, [rules.requiredIfNotExists('phone')]),
-    phone: schema.string({}, [rules.requiredIfNotExists('email')]),
+    email: schema.string({}, [rules.requiredIfNotExists('phone'), rules.email()]),
+    phone: schema.string({}, [rules.requiredIfNotExists('email'), rules.mobile()]),
     password: schema.string.optional(),
     roles: schema.array.optional().members(schema.string())
   })
