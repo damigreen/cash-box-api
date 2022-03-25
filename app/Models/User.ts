@@ -45,7 +45,7 @@ export default class User extends BaseModel {
   public suspended: string
 
   @column()
-  public suspended_till: string
+  public suspended_till?: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
