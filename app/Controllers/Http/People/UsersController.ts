@@ -14,7 +14,7 @@ export default class UsersController {
         const payload = await request.validate(StoreValidator);
         console.log(payload);
 
-
+        const username = payload.name.slice(0, payload.name.indexOf(' '))
 
         // Format phone number for whatsapp
         // if (phone.startsWith("+234") && phone[4] != 0) {
@@ -25,13 +25,20 @@ export default class UsersController {
         //     phone = "+234" + phone.substring(1);
         // }
         const user = await User.firstOrCreate({
-            name: "Damilola Faseun",
-            email: "fashfired@gmail.com",
-            phone: "+23407061935742"
+            name: payload.name,
+            username: username,
+            email: payload.email,
+            phone: payload.phone,
+            password: payload.password
         })
 
+        // TODO
+        // Send email to activate account
+        // click on login link to activate
+
         return response.json({
-            status: true
+            status: true,
+            user
         })
     }
 }
